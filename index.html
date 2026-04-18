@@ -54,16 +54,14 @@
       min-height: 100vh;
     }
 
-    /* paper grain overlay */
+    /* soft warm paper tint */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 100;
-      opacity: 0.35;
-      mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background: linear-gradient(180deg, rgba(255, 245, 225, 0.0) 0%, rgba(234, 226, 209, 0.35) 100%);
     }
 
     /* ambient warm glow */
@@ -391,6 +389,7 @@
       </svg>
       <p>The neighbor who hosts the block party.</p>
       <p>The friend who turns neighbors into community.</p>
+      <p>The player who <em>gives</em> the game its heart.</p>
       <p>The one who walks into a room and <em>makes it better</em>.</p>
     </div>
 
@@ -399,7 +398,7 @@
         <circle cx="32" cy="10" r="10" fill="none" stroke="var(--ink)" stroke-width="0.5" opacity="0.2"/>
         <circle cx="32" cy="10" r="2.8" fill="var(--accent)"/>
       </svg>
-      <p>The scarcest value on earth.</p>
+      <p>What makes us most human.</p>
       <p>Never measured. Never reciprocated.</p>
     </div>
 
@@ -416,7 +415,7 @@
         <line x1="42" y1="7" x2="42" y2="13" stroke="var(--ink)" stroke-width="0.9" stroke-linecap="round"/>
         <line x1="50" y1="9" x2="50" y2="13" stroke="var(--ink)" stroke-width="0.9" stroke-linecap="round"/>
       </svg>
-      <p>We measure what you give to other humans, just by being you.</p>
+      <p>We measure what you give to others, just by being you.</p>
       <p>Your presence. Your energy. Your generosity.</p>
     </div>
 
