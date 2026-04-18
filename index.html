@@ -509,10 +509,10 @@
         <circle cx="24" cy="15" r="1.6" fill="var(--ink)"/>
         <circle cx="40" cy="14" r="1.6" fill="var(--ink)"/>
       </svg>
-      <p>The neighbor who hosts the block party.</p>
-      <p>The friend who turns neighbors into community.</p>
-      <p>The player who <em>gives</em> the game its heart.</p>
       <p>The one who makes us feel <em>free</em> to be our best selves.</p>
+      <p>The neighbor who hosts the block party.</p>
+      <p>The friend who turns strangers into community.</p>
+      <p>The player who makes every game <em>more fun to play</em>.</p>
       <p>The one who walks into a room and <em>makes it better</em>.</p>
     </div>
 
@@ -663,11 +663,14 @@
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
     // ------- EMAIL CAPTURE -------
-    // Replace FORM_ACTION_URL below with your Mailchimp form action URL.
-    // How to get it: Mailchimp → Audience → Signup forms → Embedded forms →
-    // copy the URL from <form action="..."> in the generated snippet.
-    // Example: https://givenreceive.us21.list-manage.com/subscribe/post?u=XXXX&id=YYYY
-    const FORM_ACTION_URL = 'REPLACE_WITH_MAILCHIMP_POST_URL';
+    // Captures emails into the Substack publication at givenreceive.substack.com.
+    // The URL is fixed by the publication subdomain — once the Substack exists,
+    // no further config is needed. Substack sends the double opt-in confirmation.
+    // If the Substack subdomain changes, update SUBSTACK_SUBDOMAIN below.
+    // Flip SUBSTACK_LIVE to true once the publication is created and accepting signups.
+    const SUBSTACK_SUBDOMAIN = 'givenreceive';
+    const SUBSTACK_LIVE = false;
+    const FORM_ACTION_URL = 'https://' + SUBSTACK_SUBDOMAIN + '.substack.com/api/v1/free';
     const FALLBACK_EMAIL = 'ourfuture@givenreceive.com';
 
     const joinForm = document.getElementById('join-form');
