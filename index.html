@@ -622,12 +622,14 @@
         <input
           type="email"
           id="join-email"
-          name="EMAIL"
+          name="email"
           placeholder="your email"
           required
           autocomplete="email"
           spellcheck="false"
         />
+        <input type="hidden" name="_subject" value="New signup at givenreceive.com" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
         <button type="submit" aria-label="Join">
           <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M5 12 H19 M13 6 L19 12 L13 18" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -664,16 +666,13 @@
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    // ------- EMAIL CAPTURE -------
-    // Captures emails into the Substack publication at givenreceive.substack.com.
-    // The URL is fixed by the publication subdomain — once the Substack exists,
-    // no further config is needed. Substack sends the double opt-in confirmation.
-    // If the Substack subdomain changes, update SUBSTACK_SUBDOMAIN below.
-    // Flip SUBSTACK_LIVE to true once the publication is created and accepting signups.
-    const SUBSTACK_SUBDOMAIN = 'givenreceive';
-    const SUBSTACK_LIVE = false;
-    const FORM_ACTION_URL = 'https://' + SUBSTACK_SUBDOMAIN + '.substack.com/api/v1/free';
-    const FALLBACK_EMAIL = 'ourfuture@givenreceive.com';
+    // ------- EMAIL CAPTURE (Formsubmit.co ajax) -------
+    // Submissions POST to Formsubmit, which emails each captured address to
+    // the target below. First submit triggers a one-time verification link —
+    // click it once and every future submission delivers immediately.
+    // To hide the target email from public source, replace the target below
+    // with the opaque hash Formsubmit emails you after verification.
+    const FORM_ACTION_URL = 'https://formsubmit.co/ajax/dave@gnt.ai';
 
     const joinForm = document.getElementById('join-form');
     const joinStatus = document.getElementById('join-status');
@@ -694,32 +693,25 @@
         setStatus('Please enter a valid email.', true);
         return;
       }
+      // Honeypot: if a bot filled this, silently "succeed" without sending.
+      const honey = joinForm.querySelector('input[name="_honey"]');
+      if (honey && honey.value) {
+        setStatus('Thank you.');
+        joinForm.reset();
+        return;
+      }
       joinButton.disabled = true;
       setStatus('Sending\u2026');
 
-      // Fallback path: if Mailchimp URL not configured, open email client.
-      if (FORM_ACTION_URL === 'REPLACE_WITH_MAILCHIMP_POST_URL') {
-        window.location.href =
-          'mailto:' + FALLBACK_EMAIL +
-          '?subject=' + encodeURIComponent('Add me to Give n Receive') +
-          '&body=' + encodeURIComponent(email);
-        setStatus('Opening your email\u2026');
-        joinButton.disabled = false;
-        return;
-      }
-
       try {
-        const formData = new FormData();
-        formData.append('EMAIL', email);
-        // Mailchimp does not support CORS; no-cors means we cannot read the
-        // response, but the POST is delivered. Mailchimp then sends the
-        // double opt-in confirmation email.
-        await fetch(FORM_ACTION_URL, {
+        const formData = new FormData(joinForm);
+        const res = await fetch(FORM_ACTION_URL, {
           method: 'POST',
-          mode: 'no-cors',
+          headers: { 'Accept': 'application/json' },
           body: formData,
         });
-        setStatus('Thank you. We will find you when it is time.');
+        if (!res.ok) throw new Error('Network response not ok');
+        setStatus('Thank you. We\u2019ll be in touch.');
         joinForm.reset();
       } catch (err) {
         setStatus('Something went wrong. Please try again.', true);
