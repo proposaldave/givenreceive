@@ -168,6 +168,28 @@
       letter-spacing: -0.012em;
     }
 
+    /* pivot — the problem-to-solution turn; breaks out of column, oversized */
+    .stanza.pivot {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 5.5rem;
+      text-align: center;
+    }
+
+    .stanza.pivot p {
+      font-family: 'Fraunces', serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-size: clamp(2rem, 5.8vw, 3.6rem);
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: none;
+      text-wrap: balance;
+    }
+
     .rule {
       display: block;
       width: 48px;
@@ -577,8 +599,8 @@
       <span class="seal">n</span>
     </div>
 
-    <div class="stanza reveal">
-      <p class="bigger"><em>Get the most out of your community &mdash; while your community gets the most out of you.</em></p>
+    <div class="stanza pivot reveal">
+      <p><em>Get the most out of your community<br>&mdash; while your community gets the most out of you.</em></p>
     </div>
 
     <div class="stanza reveal">
@@ -601,7 +623,7 @@
     </div>
 
     <div class="stanza reveal">
-      <p>When we <em>measure</em> what we mean to each other &mdash; magic happens.</p>
+      <p class="bigger">When we <em>measure</em> what we mean to each other &mdash; magic happens.</p>
     </div>
 
     <div class="seal-wrap reveal">
