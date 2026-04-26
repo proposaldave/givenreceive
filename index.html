@@ -118,6 +118,21 @@
 
     .scroll-hint { display: none; }
 
+    .hero-tagline {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.35rem, 2.8vw, 2rem);
+      line-height: 1.3;
+      letter-spacing: 0.005em;
+      color: var(--ink-soft);
+      margin-top: 1.75rem;
+      max-width: 32ch;
+      text-wrap: balance;
+      opacity: 0;
+      animation: fadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+    }
+
     /* ------- MANIFESTO ------- */
     .manifesto {
       max-width: 680px;
@@ -536,6 +551,7 @@
       </svg>
     </div>
     <h1 class="wordmark">Give <span class="n">n</span> Receive</h1>
+    <p class="hero-tagline">Abundant, autonomous human connection.</p>
   </section>
 
   <!-- MANIFESTO -->
