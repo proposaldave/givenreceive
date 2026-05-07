@@ -533,29 +533,340 @@
         transform: none;
       }
     }
+
+    /* ============================================================
+       BRAND HERO — "Human Value, Finally Seen"
+       The investor-frame visualization. One screen, no scroll
+       required to grasp the thesis. Long-story manifesto follows
+       below for those who scroll deeper.
+       ============================================================ */
+
+    .brand-hero {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: clamp(40px, 7vh, 80px) clamp(20px, 4vw, 64px) clamp(60px, 9vh, 110px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .bh-inner {
+      flex: 1;
+      max-width: 1440px;
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+      gap: clamp(28px, 5vh, 64px);
+    }
+
+    /* ----- TOP COPY ----- */
+    .bh-top {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .bh-headline {
+      font-family: 'Newsreader', 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(15px, 1.55vw, 19px);
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: clamp(14px, 1.8vh, 24px);
+      opacity: 0;
+      animation: bh-fadeUp 1.0s cubic-bezier(.16,1,.3,1) 0.2s forwards;
+    }
+    .bh-subhead {
+      font-family: 'Newsreader', 'Fraunces', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(13px, 1.05vw, 15px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1.75;
+      opacity: 0;
+      animation: bh-fadeUp 1.0s cubic-bezier(.16,1,.3,1) 0.5s forwards;
+    }
+
+    /* ----- THE STAGE: G [dot field] n-orb [dot field] R ----- */
+    .bh-stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto 1fr auto;
+      align-items: center;
+      gap: clamp(8px, 1.4vw, 24px);
+      min-height: clamp(280px, 42vh, 480px);
+    }
+
+    .bh-letter {
+      font-family: 'Instrument Serif', 'Fraunces', Georgia, serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: clamp(120px, 17vw, 260px);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      opacity: 0;
+    }
+    .bh-letter--g { color: #2A5DB0; animation: bh-fadeInLeft 1.2s cubic-bezier(.16,1,.3,1) 0.9s forwards; }
+    .bh-letter--r { color: #C24930; animation: bh-fadeInRight 1.2s cubic-bezier(.16,1,.3,1) 0.9s forwards; }
+
+    .bh-field {
+      position: relative;
+      height: 100%;
+      min-height: clamp(220px, 32vh, 380px);
+    }
+    .bh-field svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      overflow: visible;
+    }
+    .bh-dot {
+      animation: bh-drift 7s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .bh-core {
+      display: grid;
+      place-items: center;
+      width: clamp(180px, 17vw, 250px);
+      height: clamp(180px, 17vw, 250px);
+      opacity: 0;
+      animation: bh-orbIn 1.4s cubic-bezier(.34,1.56,.64,1) 1.4s forwards;
+    }
+    .bh-orb {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 42%,
+          #FFFAEC 0%,
+          #F4E5C2 38%,
+          rgba(244, 229, 194, 0.0) 72%);
+      box-shadow:
+        0 0 90px rgba(255, 232, 175, 0.55),
+        0 0 36px rgba(255, 232, 175, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .bh-n {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(72px, 7.8vw, 116px);
+      color: #1a1a1a;
+      line-height: 1;
+      margin-bottom: clamp(8px, 1vh, 14px);
+    }
+    .bh-orb-label {
+      font-family: 'Newsreader', serif;
+      font-weight: 500;
+      font-size: clamp(8px, 0.7vw, 10px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #A8841F;
+      text-align: center;
+      line-height: 1.55;
+    }
+
+    /* ----- CAPTIONS (left/right under the stage) ----- */
+    .bh-captions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 0 clamp(16px, 5vw, 80px);
+    }
+    .bh-caption {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      opacity: 0;
+      animation: bh-fadeUp 1.0s cubic-bezier(.16,1,.3,1) 2.0s forwards;
+    }
+    .bh-caption--left { align-items: flex-start; }
+    .bh-caption--right { align-items: flex-end; text-align: right; }
+    .bh-caption__eyebrow {
+      font-family: 'Newsreader', serif;
+      font-weight: 600;
+      font-size: clamp(11px, 0.92vw, 13px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .bh-caption--left .bh-caption__eyebrow { color: #2A5DB0; }
+    .bh-caption--right .bh-caption__eyebrow { color: #C24930; }
+    .bh-caption__line {
+      font-family: 'Newsreader', serif;
+      font-weight: 400;
+      font-size: clamp(15px, 1.35vw, 20px);
+      color: var(--ink);
+      letter-spacing: 0.005em;
+    }
+    .bh-caption__line em { font-style: italic; font-weight: 600; }
+
+    /* ----- SEAL ("From invisible to invaluable.") ----- */
+    .bh-seal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(14px, 2vw, 28px);
+      opacity: 0;
+      animation: bh-fadeIn 1.2s ease 2.4s forwards;
+    }
+    .bh-seal__rule {
+      flex: 0 1 clamp(60px, 8vw, 140px);
+      height: 1px;
+      background: #A8841F;
+      opacity: 0.65;
+    }
+    .bh-seal__text {
+      font-family: 'Newsreader', serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: clamp(11px, 0.95vw, 14px);
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: #A8841F;
+    }
+
+    /* ----- SCROLL CUE ----- */
+    .bh-scroll {
+      position: absolute;
+      bottom: clamp(18px, 2.4vh, 36px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Newsreader', serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      text-decoration: none;
+      opacity: 0;
+      animation: bh-fadeIn 1.2s ease 2.8s forwards;
+      transition: color 0.3s ease;
+    }
+    .bh-scroll:hover { color: var(--ink-soft); }
+    .bh-scroll svg { display: block; }
+
+    /* ----- ANIMATIONS ----- */
+    @keyframes bh-fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bh-fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes bh-fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes bh-fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes bh-orbIn {
+      from { opacity: 0; transform: scale(0.55); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes bh-drift {
+      0%, 100% { transform: translate(0, 0); }
+      50%      { transform: translate(0, -3px); }
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 880px) {
+      .bh-stage {
+        grid-template-columns: auto 1fr auto 1fr auto;
+        gap: clamp(4px, 1vw, 14px);
+        min-height: clamp(220px, 36vh, 360px);
+      }
+      .bh-letter { font-size: clamp(80px, 14vw, 140px); }
+      .bh-core { width: clamp(130px, 22vw, 200px); height: clamp(130px, 22vw, 200px); }
+    }
+    @media (max-width: 600px) {
+      .brand-hero { padding: clamp(28px, 6vh, 56px) 16px clamp(48px, 8vh, 84px); }
+      .bh-headline { letter-spacing: 0.26em; }
+      .bh-subhead { letter-spacing: 0.16em; }
+      .bh-stage {
+        grid-template-columns: auto 1fr auto;
+        gap: 6px;
+      }
+      .bh-field { display: none; }
+      .bh-letter { font-size: clamp(64px, 18vw, 110px); }
+      .bh-core { width: clamp(112px, 28vw, 170px); height: clamp(112px, 28vw, 170px); }
+      .bh-captions {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 0 8px;
+      }
+      .bh-caption--right { align-items: flex-start; text-align: left; }
+      .bh-seal__rule { flex-basis: 36px; }
+      .bh-seal__text { font-size: 10px; letter-spacing: 0.24em; }
+    }
   </style>
 </head>
 
 <body>
   <div class="glow" aria-hidden="true"></div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="mark" aria-hidden="true">
-      <svg viewBox="0 0 132 32" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 10 24 Q 36 4, 64 24" stroke="var(--ink)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-        <path d="M 68 24 Q 94 4, 122 24" stroke="var(--accent)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-        <circle cx="10" cy="24" r="1.7" fill="var(--ink)"/>
-        <circle cx="66" cy="24" r="2.3" fill="var(--accent)"/>
-        <circle cx="122" cy="24" r="1.7" fill="var(--accent)"/>
-      </svg>
+  <!-- BRAND HERO — investor-frame visualization -->
+  <section class="brand-hero" aria-label="Give n Receive — Human Value, Finally Seen">
+    <div class="bh-inner">
+
+      <header class="bh-top">
+        <h1 class="bh-headline">Human Value, Finally Seen.</h1>
+        <p class="bh-subhead">Most human value is invisible.<br>So it never returns.</p>
+      </header>
+
+      <div class="bh-stage">
+        <span class="bh-letter bh-letter--g" aria-hidden="true">G</span>
+        <div class="bh-field bh-field--left" aria-hidden="true"></div>
+
+        <div class="bh-core" aria-label="Give n Receive — Networked Reciprocity">
+          <div class="bh-orb">
+            <span class="bh-n">n</span>
+            <span class="bh-orb-label">Networked<br>Reciprocity</span>
+          </div>
+        </div>
+
+        <div class="bh-field bh-field--right" aria-hidden="true"></div>
+        <span class="bh-letter bh-letter--r" aria-hidden="true">R</span>
+      </div>
+
+      <div class="bh-captions">
+        <div class="bh-caption bh-caption--left">
+          <span class="bh-caption__eyebrow">What you give</span>
+          <span class="bh-caption__line"><em>fuels</em> the network.</span>
+        </div>
+        <div class="bh-caption bh-caption--right">
+          <span class="bh-caption__eyebrow">Your people · Your moments</span>
+          <span class="bh-caption__line">Reciprocated <em>back to you</em>.</span>
+        </div>
+      </div>
+
+      <div class="bh-seal">
+        <span class="bh-seal__rule"></span>
+        <em class="bh-seal__text">From invisible to invaluable.</em>
+        <span class="bh-seal__rule"></span>
+      </div>
+
     </div>
-    <h1 class="wordmark">Give <span class="n">n</span> Receive</h1>
-    <p class="hero-tagline">Abundant, autonomous human connection.</p>
+
+    <a class="bh-scroll" href="#story" aria-label="Read the full thesis below">
+      <span>Read the thesis</span>
+      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+        <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
   </section>
 
   <!-- MANIFESTO -->
-  <section class="manifesto">
+  <section id="story" class="manifesto">
 
     <div class="stanza reveal">
       <svg class="dingbat" viewBox="0 0 64 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -711,6 +1022,50 @@
   </footer>
 
   <script>
+    // ------- BRAND HERO: dot field generator -------
+    // Generates organic blue/red dot clouds that flow from G → n → R.
+    // SVG uses viewBox 0 0 100 100 with preserveAspectRatio:none so it
+    // stretches to fill the field container at any width.
+    (function buildDotFields() {
+      const SVG_NS = 'http://www.w3.org/2000/svg';
+
+      function makeField(host, side) {
+        if (!host) return;
+        const svg = document.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('viewBox', '0 0 100 100');
+        svg.setAttribute('preserveAspectRatio', 'none');
+        const color = side === 'left' ? '#3D6FBE' : '#C24930';
+        const N = 70;
+        for (let i = 0; i < N; i++) {
+          const c = document.createElementNS(SVG_NS, 'circle');
+          // t = 0 at outer edge, 1 at orb edge — controls density and opacity
+          const t = Math.random();
+          const xOuter = side === 'left' ? 8 : 92;
+          const xInner = side === 'left' ? 92 : 8;
+          const x = xOuter + (xInner - xOuter) * t;
+          // soft hourglass band: tighter near orb, wider at outer edge
+          const bandHalf = 18 + Math.random() * 18 - Math.abs(0.5 - t) * 8;
+          const y = 50 + (Math.random() * 2 - 1) * bandHalf;
+          const r = 0.55 + Math.random() * 1.05;
+          // brighter close to the orb, dimmer at the outer edge
+          const alpha = 0.16 + t * 0.62;
+          c.setAttribute('cx', x.toFixed(2));
+          c.setAttribute('cy', y.toFixed(2));
+          c.setAttribute('r', r.toFixed(2));
+          c.setAttribute('fill', color);
+          c.setAttribute('opacity', alpha.toFixed(2));
+          c.setAttribute('class', 'bh-dot');
+          c.style.animationDelay = (Math.random() * -7) + 's';
+          c.style.animationDuration = (4.5 + Math.random() * 4) + 's';
+          svg.appendChild(c);
+        }
+        host.appendChild(svg);
+      }
+
+      makeField(document.querySelector('.bh-field--left'), 'left');
+      makeField(document.querySelector('.bh-field--right'), 'right');
+    })();
+
     // scroll reveal
     const observer = new IntersectionObserver(
       (entries) => {
